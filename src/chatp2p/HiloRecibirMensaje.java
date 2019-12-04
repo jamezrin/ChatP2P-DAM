@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
+import javax.swing.JScrollBar;
+
 public class HiloRecibirMensaje extends Thread {
 	private final Controlador controlador;
 	
@@ -26,7 +28,7 @@ public class HiloRecibirMensaje extends Thread {
 						datagramReceived.getData(), 0, 
 						datagramReceived.getLength());
 				
-				controlador.vista.mensajesModel.addElement(messageReceived);
+				controlador.vista.anadirMensaje(messageReceived);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

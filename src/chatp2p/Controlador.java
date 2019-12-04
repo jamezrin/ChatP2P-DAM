@@ -10,6 +10,7 @@ import java.net.SocketException;
 import java.time.LocalDateTime;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 
 public class Controlador {
 	protected Vista vista;
@@ -79,7 +80,8 @@ public class Controlador {
 		byte[] mensajeBytes = mensajeFormateado.getBytes();
 		
 		if (mensajeBytes.length <= 512) {
-			vista.mensajesModel.addElement(mensajeFormateado);
+			vista.anadirMensaje(mensajeFormateado);
+			
 			HiloEnviarMensaje hiloEnviarMensaje = new HiloEnviarMensaje(
 					Controlador.this,
 					mensajeBytes

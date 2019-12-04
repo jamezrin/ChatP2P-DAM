@@ -2,6 +2,8 @@ package chatp2p;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -9,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -64,5 +67,11 @@ public class Vista {
 		
 		panel.add(mensajesScrollPane);
 		panel.add(mensajePanel);
+	}
+	
+	public void anadirMensaje(String mensaje) {
+		mensajesModel.addElement(mensaje);
+		JScrollBar scrollBar = mensajesScrollPane.getVerticalScrollBar();
+		scrollBar.setValue(scrollBar.getMaximum());
 	}
 }

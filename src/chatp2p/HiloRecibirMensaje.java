@@ -13,12 +13,14 @@ public class HiloRecibirMensaje extends Thread {
 	
 	@Override
 	public void run() {
+		DatagramSocket datagramSocket = null;
+		
 		try {
-			DatagramSocket udpSocket = new DatagramSocket(controlador.puertoEntrada);
+			datagramSocket = new DatagramSocket(controlador.puertoEntrada);
 			DatagramPacket datagramReceived = new DatagramPacket(new byte[512], 512);
 			
 			while (true) {
-				udpSocket.receive(datagramReceived);
+				datagramSocket.receive(datagramReceived);
 				
 				String messageReceived = new String(
 						datagramReceived.getData(), 0, 
@@ -28,6 +30,10 @@ public class HiloRecibirMensaje extends Thread {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (datagramSocket != null) {
+				datagramSocket.close();
+			}
 		}
 	}
 }

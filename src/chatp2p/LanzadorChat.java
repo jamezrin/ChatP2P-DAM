@@ -2,7 +2,7 @@ package chatp2p;
 
 import javax.swing.JFrame;
 
-public class Test {
+public class LanzadorChat {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);

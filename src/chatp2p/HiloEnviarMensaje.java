@@ -16,18 +16,25 @@ public class HiloEnviarMensaje extends Thread {
 	
 	@Override
 	public void run() {
+		DatagramSocket datagramSocket = null;
+		
 		try {
-			DatagramSocket datagramSocket = new DatagramSocket();
+			datagramSocket = new DatagramSocket();
 			DatagramPacket datagramPacket = new DatagramPacket(
 					mensajeBytes, 
 					mensajeBytes.length, 
 					InetAddress.getByName(controlador.hostSalida), 
 					controlador.puertoSalida
 			);
+			
 			datagramSocket.send(datagramPacket);
 			datagramSocket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (datagramSocket != null) {
+				datagramSocket.close();
+			}
 		}
 	}
 }
